@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html ng-app="sglobally">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Newsvideos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="js/html5.js"></script>
+<script type='text/javascript' src='/js/jquery-1.7.1.min.js'></script>    
+<script src="/js/angular.min.js"></script>
+<script src="/js/controllers.js"></script>   
+<script src="/js/ui-bootstrap-tpls-0.6.0.js"></script>
+<script type="text/javascript" src="http://jwpsrv.com/library/5V3tOP97EeK2SxIxOUCPzg.js"></script>
+<script type="text/javascript">jwplayer.key="L0SAYMTJJs/IIkeci5tG4vgIMGHAc6YFBtmJaA==";</script></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43119651-8', 'newsvideos.net');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body ng-controller="SgloballyHome" ng-cloak onload="startTime();">
+
+<header>
+<div class="container">
+<a href="/" title="Newsvideos" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav>
+  <div class="navcontainer">
+    <div class="menu"> <span>MENU</span>
+      <ul class="Navigation">
+        <li><a href="/" title="Home" class="active">Home</a> </li>
+        <li><a href="#" title="About">About</a></li>
+        <li><a href="#" title="Contact Us">Contact Us</a></li>
+      </ul>
+    </div>
+    <!-- menu end --> 
+  </div>                             
+  
+</nav>
+<!-- nav end -->
+
+
+<span class="clear"></span>
+</div>
+</header>
+<!-- header end -->
+
+
+<div class="maintop">
+	<div class="container">
+		<div class="topbanner"><img src="images/topbanner.jpg" alt=""></div>
+		<div class="bannersection">
+			<div class="slideshow">
+				<input type="hidden" name="vide_val" id="video_val" value="{{videoParam.video_path}}">
+      			<div id="trailor" ng-init="loadVideo()">Loading the player...</div> 
+      			<!-- <span class="play"></span> -->
+				<div class="slideshow-title">{{videoParam.title}}</div>
+			</div>
+			<!-- slideshow end -->
+            
+			<div class="showcase-rt">
+				<div class="timer"><img src="images/timer.png" alt="" class="left"> <span class="left margin5">May 15, 2014<br>13:00 IST</span></div>
+				<div class="followus">
+					<span class="left margin5_T">Follow Us on:</span> 
+					<span class="left margin10_L">
+						<a href="#"><img src="images/fb.png"></a> 
+						<a href="#"><img src="images/twitter1.png"></a> 
+						<a href="#"><img src="images/googleplus.png"></a>
+					</span>
+				</div>
+				<div class="rightad"><img src="images/right-ad1.jpg" alt=""></div>
+			</div><!-- slideshow right side end -->
+			
+            <span class="clear"></span>
+		</div>
+	</div>
+
+</div>
+
+<!-- maintop end -->
+
+<div class="feature">
+	<div class="container">
+		<div class="module">
+			<div class="module-title">Popular Videos</div>
+			<!-- <div class="popular-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam adipiscing quam eleifend magna faucibus egestas. Maecenas tristique, metus ut placerat venenatis, nisi erat iaculis ligula, a mollis neque mauris eu mauris.</div> -->
+	
+			<div class="span4" ng-repeat="pvid in popularVideos">
+				<div class="video">
+					<a ng-href="/video?id={% verbatim %}{{pvid.value[0]}}{% endverbatim %}">
+					<img ng-src="http://876490ded624fedbbf8f-2529efbed00bf302a12a4cac23251cd4.r64.cf2.rackcdn.com/{% verbatim %}{{pvid.value[2]}}{% endverbatim %}" alt="{% verbatim %}{{pvid.value[1]}}{% endverbatim %}"> 
+					<span class="videotext"></span>
+					</a>
+				</div>
+				<div class="video-date">
+					<span class="left">{% verbatim %}{{pvid.value[5]}}{% endverbatim %}</span> 
+					<span class="right">{% verbatim %}{{pvid.value[3]}}{% endverbatim %}</span>
+				</div>
+				<div class="description">{% verbatim %}{{pvid.value[1]}}{% endverbatim %}</div>
+			</div>
+			<!-- video end -->			
+	
+	<span class="clear"></span>
+		</div><!-- Popular Videos module end -->
+	</div>
+</div>
+<!-- feature end -->
+
+
+<div class="mainbody">
+	<div class="container">
+		<aside class="leftcontent">
+			<div class="module">
+			<div class="module-title">More Videos</div>
+	
+			
+			<div class="span3" ng-repeat="vid in noneFeaturedVideos">
+				<div class="video">
+					<a ng-href="/video?id={% verbatim %}{{vid.value[0]}}{% endverbatim %}">
+					<img ng-src="http://876490ded624fedbbf8f-2529efbed00bf302a12a4cac23251cd4.r64.cf2.rackcdn.com/{% verbatim %}{{vid.value[2]}}{% endverbatim %}" alt="{% verbatim %}{{vid.value[1]}}{% endverbatim %}"> 
+					<span class="videotext"></span>
+				</div>
+				<div class="video-date">
+					<span class="left">{% verbatim %}{{vid.value[5]}}{% endverbatim %}</span> 
+					<span class="right">{% verbatim %}{{vid.value[3]}}{% endverbatim %}</span>
+				</div>
+				<div class="description">{% verbatim %}{{vid.value[1]}}{% endverbatim %}</div>
+			</div>
+			<!-- video end -->	
+	
+			<span class="clear"></span>
+			<div class="row pullright"><pagination on-select-page="pageChanged(page)" items-per-page="videosPerPage" total-items="bigTotalItems" page="bigCurrentPage" max-size="maxSize" boundary-links="true" rotate="false" num-pages="numPages"></pagination>   </div>
+		</div><!-- Popular Videos module end -->
+		
+		</aside>
+		
+		<aside class="sidebar">
+			<div class="search">
+				<input type="text" name="" placeholder="Search here...."/>
+				<input type="submit" class="search-btn"/>
+			</div>
+			<div class="rightad margin10_T"><img src="images/right-ad2.jpg" alt=""></div>
+			
+			<div class="module twitterposts">
+			<div class="module-title">Latest Tweets</div>
+			<div class="FieldLeft">
+			  <div class="twitter-cont">
+				<p><img src="images/small-thumb1.jpg"></p>
+				<p><strong class="blue">Rob Fee@</strong>robfee</p>
+				<p>I wish every episode of Breaking Bad started with the cast playing in a fountain like on Friends.</p>
+				<p class="gray margin20_T small"><img align="absmiddle" src="images/twitter-small.png"> 7:35 AM - 19 Aug 13</p>
+				<p class="gray small"><img align="absmiddle" src="images/reply.png"> Reply <span class="right"><img align="absmiddle" src="images/retweet.png"> Retweet</span></p>
+				<p class="gray small"><img align="absmiddle" src="images/favorite.png"> Favorite</p>
+			  </div>
+			  
+			  <div class="twitter-cont">
+				<p><img src="images/small-thumb1.jpg"></p>
+				<p><strong class="blue">Rob Fee@</strong>robfee</p>
+				<p>I wish every episode of Breaking Bad started with the cast playing in a fountain like on Friends.</p>
+				<p class="gray margin20_T small"><img align="absmiddle" src="images/twitter-small.png"> 7:35 AM - 19 Aug 13</p>
+				<p class="gray small"><img align="absmiddle" src="images/reply.png"> Reply <span class="right"><img align="absmiddle" src="images/retweet.png"> Retweet</span></p>
+				<p class="gray small"><img align="absmiddle" src="images/favorite.png"> Favorite</p>
+			  </div>
+			</div>
+			<div class="twitterAdd"><img src="images/ad-160x600.jpg"></div>
+			</div>
+			
+			<span class="clear"></span>
+			
+			
+			
+		</aside><!-- sidebar end -->
+		
+		<span class="clear"></span>
+		
+		<div class="bottom"><div class="ad1"><img src="images/ad1.jpg" alt=""></div></div>
+		
+	</div>
+
+</div><!-- mainbody end -->
+
+
+
+<footer>
+	<div class="container">
+		
+		<div class="social">
+		<span><a href="#"><img src="images/twitter.png"></a><br>
+<br>
+Twitter</span>
+		<span><a href="#"><img src="images/facebook.png"></a><br>
+<br>
+Facebook</span>
+		<span><a href="#"><img src="images/google.png"></a><br>
+<br>
+Google+</span>
+		</div>
+		
+    <summary class="margin20_T">
+        <p>Copyright &copy; 2014 Newsvideos. All rights reserved. <a href="#">Terms and Conditions</a>   |     <a href="#">Privacy Policy</a></p>
+        
+    </summary>
+    </div>
+    <!-- container end -->
+</footer>
+<!-- footer end -->
+</body>
+</html>
